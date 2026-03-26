@@ -71,7 +71,7 @@
     height: 34px;
   }
 
-  .nav-logo img { height: 100%; width: auto; }
+  .nav-logo img { height: 100%; width: auto; mix-blend-mode: screen; }
 
   .nav-logo-fallback {
     font-family: var(--font-display);
@@ -158,7 +158,7 @@
     text-transform: uppercase;
     color: var(--text-muted);
     margin-bottom: 24px;
-    animation: fadeUp 1.2s 0.1s ease both;
+    animation: fadeUp 1.0s 0.1s ease forwards;
     font-weight: 300;
     position: relative;
     z-index: 2;
@@ -168,7 +168,7 @@
   .hero-logo-wrap {
     position: relative;
     z-index: 2;
-    animation: fadeUp 1.2s 0.25s ease both;
+    animation: fadeUp 1.0s 0.2s ease forwards;
     opacity: 0;
   }
 
@@ -177,6 +177,7 @@
     height: auto;
     display: block;
     margin: 0 auto;
+    mix-blend-mode: screen;
   }
 
   /* "music collective" BELOW logo */
@@ -187,7 +188,7 @@
     text-transform: uppercase;
     color: var(--text-muted);
     margin-top: 20px;
-    animation: fadeUp 1.2s 0.4s ease both;
+    animation: fadeUp 1.0s 0.3s ease forwards;
     font-weight: 300;
     position: relative;
     z-index: 2;
@@ -203,7 +204,7 @@
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    animation: fadeIn 2s 1.2s ease both;
+    animation: fadeIn 1.5s 0.8s ease forwards;
     opacity: 0;
   }
 
@@ -290,10 +291,10 @@
 
   .who-text .hl { color: var(--crimson); }
 
-  /* 2x2 image grid */
+  /* 3x2 image grid */
   .who-images {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
   }
 
@@ -301,7 +302,7 @@
     position: relative;
     overflow: hidden;
     background: var(--mid);
-    aspect-ratio: 4/5;
+    aspect-ratio: 3/4;
   }
 
   .img-card img {
@@ -363,21 +364,30 @@
     aspect-ratio: 1;
     background: var(--mid);
     border: 1px solid rgba(184,24,74,0.07);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
+    display: block;
     color: var(--text-muted);
     text-decoration: none;
-    transition: border-color 0.3s, background 0.3s;
+    transition: border-color 0.3s;
     position: relative;
     overflow: hidden;
   }
 
+  .ig-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease, filter 0.6s ease;
+    filter: brightness(0.82) contrast(1.05) saturate(0.88);
+  }
+
+  .ig-tile:hover img {
+    transform: scale(1.04);
+    filter: brightness(0.6) contrast(1.05) saturate(0.7);
+  }
+
   .ig-tile:hover {
     border-color: rgba(184,24,74,0.4);
-    background: rgba(184,24,74,0.05);
   }
 
   .ig-tile:hover .ig-tile-overlay { opacity: 1; }
@@ -944,7 +954,7 @@
     border-top: 1px solid rgba(240,230,211,0.04);
   }
 
-  .footer-logo img { height: 26px; width: auto; opacity: 0.3; }
+  .footer-logo img { height: 26px; width: auto; opacity: 0.3; mix-blend-mode: screen; }
 
   .footer-logo-fallback {
     font-family: var(--font-display);
@@ -985,9 +995,14 @@
   }
 
   .fade-in-up {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in-up.will-animate {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
   }
 
   .fade-in-up.visible { opacity: 1; transform: translateY(0); }
@@ -1082,7 +1097,7 @@
       <p>When you step into a disko dolce night, you feel the difference. This is disko dolce. This is <span class="hl">disko dolce music</span>.</p>
     </div>
 
-    <!-- 2x2 image grid -->
+    <!-- 3x2 image grid -->
     <div class="who-images fade-in-up">
       <div class="img-card">
         <img src="20250912_Arche_FINALE_VERSION.png" alt="Arche Ahoi" onerror="this.closest('.img-card').style.background='#181818';">
@@ -1095,6 +1110,12 @@
       </div>
       <div class="img-card">
         <img src="dd_community.jpg" alt="disko dolce community" onerror="this.closest('.img-card').style.background='#181818';">
+      </div>
+      <div class="img-card">
+        <img src="dd_community_2.jpg" alt="disko dolce community" onerror="this.closest('.img-card').style.background='#181818';">
+      </div>
+      <div class="img-card">
+        <img src="dd_community_3.jpg" alt="disko dolce community" onerror="this.closest('.img-card').style.background='#181818';">
       </div>
     </div>
   </div>
@@ -1109,22 +1130,18 @@
   </div>
   <div class="ig-grid">
     <a href="https://www.instagram.com/diskodolce.music/p/DWUf0ZcCCJ9/" target="_blank" class="ig-tile">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-      <span class="ig-tile-label">view post</span>
+      <img src="impressions_1.jpg" alt="disko dolce on instagram" onerror="this.style.display='none'; this.parentNode.style.background='#181818'; this.parentNode.style.display='flex'; this.parentNode.style.alignItems='center'; this.parentNode.style.justifyContent='center';">
       <div class="ig-tile-overlay"><span>open on instagram</span></div>
     </a>
     <a href="https://www.instagram.com/diskodolce.music/p/DVl8hkKiNZj/" target="_blank" class="ig-tile">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-      <span class="ig-tile-label">view post</span>
+      <img src="impressions_2.jpg" alt="disko dolce on instagram" onerror="this.style.display='none'; this.parentNode.style.background='#181818'; this.parentNode.style.display='flex'; this.parentNode.style.alignItems='center'; this.parentNode.style.justifyContent='center';">
       <div class="ig-tile-overlay"><span>open on instagram</span></div>
     </a>
     <a href="https://www.instagram.com/p/DOorO1wiBcQ/" target="_blank" class="ig-tile">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-      <span class="ig-tile-label">view post</span>
+      <img src="impressions_3.png" alt="disko dolce on instagram" onerror="this.style.display='none'; this.parentNode.style.background='#181818'; this.parentNode.style.display='flex'; this.parentNode.style.alignItems='center'; this.parentNode.style.justifyContent='center';">
       <div class="ig-tile-overlay"><span>open on instagram</span></div>
     </a>
   </div>
-  <p class="ig-note">Instagram does not allow external embedding &#8212; click any tile to open the post directly on <a href="https://www.instagram.com/diskodolce.music/" target="_blank">@diskodolce.music</a></p>
 </div>
 
 <div class="divider"></div>
@@ -1313,7 +1330,7 @@
       <div class="gig-item">
         <div class="gig-date">20 Mar<br>2026</div>
         <div>
-          <div class="gig-name">Frigo @ HIVE Club</div>
+          <div class="gig-name">Frigo at HIVE Club</div>
           <div class="gig-venue">Zurich, CH</div>
         </div>
       </div>
@@ -1348,10 +1365,10 @@
     <div class="fade-in-up">
       <p class="contact-intro">We love meeting people who love what we love. Whether it&#8217;s a booking, a collaboration, or just a feeling &#8212; reach out.</p>
       <div class="contact-links">
-        <a href="mailto:diskodolcemusic@gmail.com" class="contact-link">
+        <a href="/cdn-cgi/l/email-protection#07636e746c6863686b64626a72746e6447606a666e6b2964686a" class="contact-link">
           <div>
             <div class="contact-link-label">Bookings &amp; General</div>
-            <div class="contact-link-value">diskodolcemusic@gmail.com</div>
+            <div class="contact-link-value"><span class="__cf_email__" data-cfemail="4d29243e26222922212e2820383e242e0d2a202c2421632e2220">[email&#160;protected]</span></div>
           </div>
           <svg class="contact-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -1377,9 +1394,9 @@
       <div class="booking-box">
         <h4>Bring disko dolce to your space</h4>
         <p>We don&#8217;t just play music &#8212; we bring an experience. A curated crowd, a unique energy, and sets that take people somewhere. If you want that for your event or venue, let&#8217;s talk.</p>
-        <a href="mailto:diskodolcemusic@gmail.com" class="booking-email">
+        <a href="/cdn-cgi/l/email-protection#a3c7cad0c8ccc7cccfc0c6ced6d0cac0e3c4cec2cacf8dc0ccce" class="booking-email">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          diskodolcemusic@gmail.com
+          <span class="__cf_email__" data-cfemail="b9ddd0cad2d6ddd6d5dadcd4cccad0daf9ded4d8d0d597dad6d4">[email&#160;protected]</span>
         </a>
       </div>
     </div>
@@ -1404,7 +1421,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
@@ -1417,7 +1434,10 @@ var revealObs = new IntersectionObserver(function(entries) {
     if (e.isIntersecting) setTimeout(function() { e.target.classList.add('visible'); }, i * 65);
   });
 }, { threshold: 0.07, rootMargin: '0px 0px -24px 0px' });
-document.querySelectorAll('.fade-in-up').forEach(function(el) { revealObs.observe(el); });
+document.querySelectorAll('.fade-in-up').forEach(function(el) {
+  el.classList.add('will-animate');
+  revealObs.observe(el);
+});
 
 var artists = {
   balkis: {
@@ -1542,12 +1562,4 @@ document.querySelectorAll('.artist-tile').forEach(function(tile) {
 document.getElementById('navLogoImg').onerror = function() {
   this.parentNode.innerHTML = '<span class="nav-logo-fallback">disko dolce</span>';
 };
-document.getElementById('heroLogoImg').onerror = function() {
-  this.parentNode.innerHTML = '<div style="font-family:var(--font-display);font-size:clamp(64px,13vw,150px);color:var(--cream);letter-spacing:0.04em;line-height:1;">disko dolce</div>';
-};
-document.getElementById('footerLogo').onerror = function() {
-  this.parentNode.innerHTML = '<span class="footer-logo-fallback">disko dolce</span>';
-};
-</script>
-</body>
-</html>
+document.getElementById('
