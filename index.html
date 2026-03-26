@@ -141,6 +141,7 @@
     overflow: hidden;
     text-align: center;
     padding: 120px 48px 80px;
+    gap: 0;
   }
 
   .hero-bg {
@@ -149,10 +150,26 @@
     background: radial-gradient(ellipse at 50% 65%, rgba(184,24,74,0.1) 0%, transparent 65%);
   }
 
+  /* countries ABOVE logo */
+  .hero-countries {
+    font-family: var(--font-body);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    animation: fadeUp 1.2s 0.1s ease both;
+    font-weight: 300;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+  }
+
   .hero-logo-wrap {
     position: relative;
     z-index: 2;
-    animation: fadeUp 1.2s ease both;
+    animation: fadeUp 1.2s 0.25s ease both;
+    opacity: 0;
   }
 
   .hero-logo-wrap img {
@@ -162,17 +179,19 @@
     margin: 0 auto;
   }
 
+  /* "music collective" BELOW logo */
   .hero-tagline {
     font-family: var(--font-body);
     font-size: 11px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--text-muted);
-    margin-top: 36px;
-    animation: fadeUp 1.2s 0.35s ease both;
+    margin-top: 20px;
+    animation: fadeUp 1.2s 0.4s ease both;
     font-weight: 300;
     position: relative;
     z-index: 2;
+    opacity: 0;
   }
 
   .hero-scroll {
@@ -220,13 +239,25 @@
     font-weight: 400;
   }
 
+  /* Section titles: CloudDancer for letters, Helvetica for special chars */
   .section-title {
     font-family: var(--font-display);
-    font-size: clamp(52px, 8vw, 108px);
+    font-size: clamp(52px, 7vw, 96px);
     color: var(--cream);
-    line-height: 0.9;
+    line-height: 1.05;
     margin-bottom: 64px;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
+    /* slight text shadow for legibility */
+    text-shadow: 0 2px 24px rgba(0,0,0,0.6);
+  }
+
+  /* Special chars inside titles use Helvetica Neue */
+  .section-title .sc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    font-size: 0.82em;
+    vertical-align: baseline;
   }
 
   .divider {
@@ -259,6 +290,7 @@
 
   .who-text .hl { color: var(--crimson); }
 
+  /* 2x2 image grid */
   .who-images {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -269,33 +301,28 @@
     position: relative;
     overflow: hidden;
     background: var(--mid);
-    aspect-ratio: 3/4;
-  }
-
-  .img-card:first-child {
-    grid-column: 1 / -1;
-    aspect-ratio: 16/9;
+    aspect-ratio: 4/5;
   }
 
   .img-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.62) contrast(1.12) saturate(0.8);
+    filter: brightness(0.72) contrast(1.08) saturate(0.82);
     transition: transform 0.7s ease, filter 0.7s ease;
     display: block;
   }
 
   .img-card:hover img {
     transform: scale(1.04);
-    filter: brightness(0.78) contrast(1.06) saturate(0.85);
+    filter: brightness(0.85) contrast(1.04) saturate(0.88);
   }
 
   .img-card::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(184,24,74,0.16), transparent 55%);
+    background: linear-gradient(to top, rgba(184,24,74,0.14), transparent 55%);
     pointer-events: none;
   }
 
@@ -328,7 +355,7 @@
 
   .ig-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 8px;
   }
 
@@ -340,25 +367,49 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 14px;
     color: var(--text-muted);
     text-decoration: none;
     transition: border-color 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
   }
 
   .ig-tile:hover {
-    border-color: rgba(184,24,74,0.32);
-    background: rgba(184,24,74,0.04);
+    border-color: rgba(184,24,74,0.4);
+    background: rgba(184,24,74,0.05);
   }
 
-  .ig-tile svg { opacity: 0.32; }
+  .ig-tile:hover .ig-tile-overlay { opacity: 1; }
 
-  .ig-tile span {
+  .ig-tile-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(184,24,74,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .ig-tile-overlay span {
+    font-family: var(--font-body);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .ig-tile svg { opacity: 0.3; }
+
+  .ig-tile-label {
     font-family: var(--font-body);
     font-size: 9px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    opacity: 0.42;
+    opacity: 0.38;
   }
 
   .ig-note {
@@ -419,11 +470,13 @@
     inset: 0;
   }
 
+  /* Artist photos: black and white + dark treatment */
   .tile-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.55) contrast(1.1) saturate(0.65);
+    object-position: center top;
+    filter: grayscale(100%) brightness(0.58) contrast(1.15);
     transition: transform 0.65s ease, filter 0.65s ease;
     display: block;
   }
@@ -431,7 +484,7 @@
   .tile-default {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.08) 50%, transparent 100%);
+    background: linear-gradient(to top, rgba(8,8,8,0.9) 0%, rgba(8,8,8,0.1) 55%, transparent 100%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -446,6 +499,13 @@
     line-height: 1;
     letter-spacing: 0.03em;
     margin-bottom: 12px;
+  }
+
+  /* special chars in names use Helvetica */
+  .tile-name .sc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.8em;
   }
 
   .tile-links { display: flex; gap: 14px; }
@@ -469,7 +529,7 @@
   .tile-hover {
     position: absolute;
     inset: 0;
-    background: rgba(8,8,8,0.9);
+    background: rgba(8,8,8,0.92);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -480,7 +540,7 @@
 
   .artist-tile:hover .tile-photo img {
     transform: scale(1.05);
-    filter: brightness(0.3) contrast(1.1) saturate(0.5);
+    filter: grayscale(100%) brightness(0.28) contrast(1.15);
   }
 
   .artist-tile:hover .tile-hover { opacity: 1; }
@@ -492,6 +552,12 @@
     color: var(--crimson);
     margin-bottom: 14px;
     letter-spacing: 0.03em;
+  }
+
+  .hover-name .sc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.8em;
   }
 
   .hover-sound {
@@ -586,6 +652,12 @@
     margin-bottom: 6px;
     line-height: 1;
     letter-spacing: 0.03em;
+  }
+
+  .modal-name .sc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.78em;
   }
 
   .modal-origin {
@@ -812,9 +884,10 @@
   }
 
   .contact-link-value {
-    font-family: var(--font-display);
-    font-size: 22px;
-    letter-spacing: 0.03em;
+    font-family: var(--font-body);
+    font-size: 20px;
+    letter-spacing: 0.02em;
+    font-weight: 300;
   }
 
   .contact-arrow { opacity: 0.32; transition: opacity 0.3s, transform 0.3s; }
@@ -844,8 +917,8 @@
 
   .booking-email {
     font-family: var(--font-body);
-    font-size: 12px;
-    letter-spacing: 0.07em;
+    font-size: 13px;
+    letter-spacing: 0.04em;
     color: var(--crimson);
     text-decoration: none;
     display: flex;
@@ -929,7 +1002,6 @@
     .ig-section { padding: 0 24px 80px; }
 
     .who-layout { grid-template-columns: 1fr; }
-    .who-images { grid-template-columns: 1fr 1fr; }
 
     .artists-grid { grid-template-columns: 1fr 1fr; }
 
@@ -945,13 +1017,16 @@
 
     .artist-tile.active .tile-hover { opacity: 1; }
     .artist-tile.active .tile-default { opacity: 0; }
-    .artist-tile.active .tile-photo img { filter: brightness(0.3) contrast(1.1) saturate(0.5); }
+    .artist-tile.active .tile-photo img {
+      filter: grayscale(100%) brightness(0.28) contrast(1.15);
+    }
   }
 
   @media (max-width: 540px) {
     .artists-grid { grid-template-columns: 1fr; }
     .hero-logo-wrap img { width: 72vw; }
-    .section-title { font-size: 48px; }
+    .section-title { font-size: 46px; }
+    .who-images { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
@@ -982,10 +1057,11 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
+  <p class="hero-countries">AT &nbsp;&#183;&nbsp; DE &nbsp;&#183;&nbsp; CH &nbsp;&#183;&nbsp; FR</p>
   <div class="hero-logo-wrap">
     <img src="diskodolce_logo_white_trans.png" alt="disko dolce" id="heroLogoImg">
   </div>
-  <p class="hero-tagline">AT &nbsp;·&nbsp; DE &nbsp;·&nbsp; CH &nbsp;·&nbsp; FR</p>
+  <p class="hero-tagline">music collective</p>
   <div class="hero-scroll">
     <div class="scroll-line"></div>
     <span>scroll</span>
@@ -1000,21 +1076,25 @@
 
   <div class="who-layout">
     <div class="who-text fade-in-up">
-      <p>We are <span class="hl">disko dolce</span> — a music collective born from the desert heat of AfrikaBurn 2024, where a group of strangers became a family.</p>
-      <p>What started as a theme camp, a shared love for freedom and music under a boundless sky, ignited something that refused to stay on the playa. We believe in dolce vita — in sweetness, in connection, in the power of music to dissolve boundaries and bring bodies and spirits together.</p>
-      <p>In 2025, we formed our collective to carry that burning spirit beyond the dust. We are not just a DJ collective. We are a <span class="hl">community</span> — one that shows up for each other, that turns a night out into an experience, that brings not only good music but a rare and special crowd into every space we inhabit.</p>
+      <p>We are <span class="hl">disko dolce</span> &#8212; a music collective born from the desert heat of AfrikaBurn 2024, where a group of strangers became a family.</p>
+      <p>What started as a theme camp, a shared love for freedom and music under a boundless sky, ignited something that refused to stay on the playa. We believe in dolce vita &#8212; in sweetness, in connection, in the power of music to dissolve boundaries and bring bodies and spirits together.</p>
+      <p>In 2025, we formed our collective to carry that burning spirit beyond the dust. We are not just a DJ collective. We are a <span class="hl">community</span> &#8212; one that shows up for each other, that turns a night out into an experience, that brings not only good music but a rare and special crowd into every space we inhabit.</p>
       <p>When you step into a disko dolce night, you feel the difference. This is disko dolce. This is <span class="hl">disko dolce music</span>.</p>
     </div>
 
+    <!-- 2x2 image grid -->
     <div class="who-images fade-in-up">
       <div class="img-card">
-        <img src="20250912_Arche_FINALE_VERSION.png" alt="Disko Dolce at Arche Ahoi" onerror="this.closest('.img-card').style.background='#181818';">
+        <img src="20250912_Arche_FINALE_VERSION.png" alt="Arche Ahoi" onerror="this.closest('.img-card').style.background='#181818';">
       </div>
       <div class="img-card">
         <img src="Schneiderei_Final.png" alt="Schneiderei Club" onerror="this.closest('.img-card').style.background='#181818';">
       </div>
       <div class="img-card">
         <img src="Copy_of_20260320_-_Hive.png" alt="HIVE Club" onerror="this.closest('.img-card').style.background='#181818';">
+      </div>
+      <div class="img-card">
+        <img src="dd_community.jpg" alt="disko dolce community" onerror="this.closest('.img-card').style.background='#181818';">
       </div>
     </div>
   </div>
@@ -1028,24 +1108,23 @@
     <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="ig-link">&#8594; @diskodolce.music</a>
   </div>
   <div class="ig-grid">
-    <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="ig-tile">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-      <span>view on instagram</span>
+    <a href="https://www.instagram.com/diskodolce.music/p/DWUf0ZcCCJ9/" target="_blank" class="ig-tile">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+      <span class="ig-tile-label">view post</span>
+      <div class="ig-tile-overlay"><span>open on instagram</span></div>
     </a>
-    <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="ig-tile">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-      <span>view on instagram</span>
+    <a href="https://www.instagram.com/diskodolce.music/p/DVl8hkKiNZj/" target="_blank" class="ig-tile">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+      <span class="ig-tile-label">view post</span>
+      <div class="ig-tile-overlay"><span>open on instagram</span></div>
     </a>
-    <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="ig-tile">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-      <span>view on instagram</span>
-    </a>
-    <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="ig-tile">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-      <span>view on instagram</span>
+    <a href="https://www.instagram.com/p/DOorO1wiBcQ/" target="_blank" class="ig-tile">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+      <span class="ig-tile-label">view post</span>
+      <div class="ig-tile-overlay"><span>open on instagram</span></div>
     </a>
   </div>
-  <p class="ig-note">Live posts require Instagram API &#8212; visit <a href="https://www.instagram.com/diskodolce.music/" target="_blank">@diskodolce.music</a> for the full feed</p>
+  <p class="ig-note">Instagram does not allow external embedding &#8212; click any tile to open the post directly on <a href="https://www.instagram.com/diskodolce.music/" target="_blank">@diskodolce.music</a></p>
 </div>
 
 <div class="divider"></div>
@@ -1059,13 +1138,16 @@
 
   <div class="artists-grid">
 
+    <!-- BALKIS -->
     <div class="artist-tile fade-in-up" data-key="balkis">
-      <div class="tile-bg"><span class="tile-bg-letter">B</span></div>
+      <div class="tile-photo">
+        <img src="photo_balkis.jpg" alt="Balkis" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>B</span></div>';">
+      </div>
       <div class="tile-default">
         <div class="tile-name">Balkis</div>
         <div class="tile-links">
-          <a href="https://soundcloud.com/disko-dolce" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-          <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
+          <a href="https://soundcloud.com/balkis_music" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
+          <a href="https://www.instagram.com/balkis_music/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
         </div>
       </div>
       <div class="tile-hover">
@@ -1073,19 +1155,22 @@
         <p class="hover-sound">Indie dance, dark disco and techno. Sensual, enchanting sets built on warm basslines, dark grooves, hypnotic melodies and vintage textures.</p>
         <p class="hover-more">click for full profile</p>
         <div class="hover-links">
-          <a href="https://soundcloud.com/disko-dolce" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-          <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
+          <a href="https://soundcloud.com/balkis_music" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
+          <a href="https://www.instagram.com/balkis_music/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
         </div>
       </div>
     </div>
 
+    <!-- ANSCHI -->
     <div class="artist-tile fade-in-up" data-key="anschi">
-      <div class="tile-bg"><span class="tile-bg-letter">A</span></div>
+      <div class="tile-photo">
+        <img src="photo_anschi.jpg" alt="Anschi" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>A</span></div>';">
+      </div>
       <div class="tile-default">
         <div class="tile-name">Anschi</div>
         <div class="tile-links">
-          <a href="https://soundcloud.com/disko-dolce" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-          <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
+          <a href="https://soundcloud.com/anschiberlin" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
+          <a href="https://www.instagram.com/frau.anschi/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
         </div>
       </div>
       <div class="tile-hover">
@@ -1093,19 +1178,22 @@
         <p class="hover-sound">Melodic house and techno with spicy, groovy indie dance and a driving bass. Sets that move through genres, moods and emotions to tell a story.</p>
         <p class="hover-more">click for full profile</p>
         <div class="hover-links">
-          <a href="https://soundcloud.com/disko-dolce" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-          <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
+          <a href="https://soundcloud.com/anschiberlin" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
+          <a href="https://www.instagram.com/frau.anschi/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
         </div>
       </div>
     </div>
 
+    <!-- KATSE -->
     <div class="artist-tile fade-in-up" data-key="katse">
-      <div class="tile-bg"><span class="tile-bg-letter">K</span></div>
+      <div class="tile-photo">
+        <img src="photo_katse.jpg" alt="Katse" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>K</span></div>';">
+      </div>
       <div class="tile-default">
         <div class="tile-name">Katse</div>
         <div class="tile-links">
-          <a href="https://soundcloud.com/disko-dolce" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-          <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
+          <a href="https://soundcloud.com/katsekatse" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
+          <a href="https://www.instagram.com/__katse/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
         </div>
       </div>
       <div class="tile-hover">
@@ -1113,19 +1201,22 @@
         <p class="hover-sound">Melodic techno with deep, rolling bass and indie dance. Emotional, energetic, a little spicy &#8212; unexpected twists that keep you moving between genres.</p>
         <p class="hover-more">click for full profile</p>
         <div class="hover-links">
-          <a href="https://soundcloud.com/disko-dolce" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-          <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
+          <a href="https://soundcloud.com/katsekatse" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
+          <a href="https://www.instagram.com/__katse/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
         </div>
       </div>
     </div>
 
+    <!-- NOTMAX -->
     <div class="artist-tile fade-in-up" data-key="notmax">
-      <div class="tile-bg"><span class="tile-bg-letter">N</span></div>
+      <div class="tile-photo">
+        <img src="photo_notmax.jpg" alt="NotMax" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>N</span></div>';">
+      </div>
       <div class="tile-default">
         <div class="tile-name">NotMax</div>
         <div class="tile-links">
-          <a href="https://soundcloud.com/disko-dolce" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-          <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
+          <a href="https://soundcloud.com/notmax_official" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
+          <a href="https://www.instagram.com/clearly_notmax/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
         </div>
       </div>
       <div class="tile-hover">
@@ -1133,48 +1224,54 @@
         <p class="hover-sound">Melodic house and indie dance with big emotions, dirty grooves and playful curveballs. Sets that start moody and end slightly unhinged.</p>
         <p class="hover-more">click for full profile</p>
         <div class="hover-links">
-          <a href="https://soundcloud.com/disko-dolce" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-          <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
+          <a href="https://soundcloud.com/notmax_official" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
+          <a href="https://www.instagram.com/clearly_notmax/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
         </div>
       </div>
     </div>
 
+    <!-- GABRI:ELLE -->
     <div class="artist-tile fade-in-up" data-key="gabrielle">
-      <div class="tile-bg"><span class="tile-bg-letter">G</span></div>
+      <div class="tile-photo">
+        <img src="photo_gabrielle.jpg" alt="Gabri:elle" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>G</span></div>';">
+      </div>
       <div class="tile-default">
-        <div class="tile-name">Gabri:elle</div>
+        <div class="tile-name">Gabri<span class="sc">:</span>elle</div>
         <div class="tile-links">
-          <a href="https://soundcloud.com/disko-dolce" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-          <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
+          <a href="https://soundcloud.com/gabrielle-tp" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
+          <a href="https://www.instagram.com/gabrielle__music/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
         </div>
       </div>
       <div class="tile-hover">
-        <div class="hover-name">Gabri:elle</div>
+        <div class="hover-name">Gabri<span class="sc">:</span>elle</div>
         <p class="hover-sound">Indie dance, melodic house and techno, tech house, afro house. Storytelling over genre boundaries &#8212; taking the crowd on a journey.</p>
         <p class="hover-more">click for full profile</p>
         <div class="hover-links">
-          <a href="https://soundcloud.com/disko-dolce" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-          <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
+          <a href="https://soundcloud.com/gabrielle-tp" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
+          <a href="https://www.instagram.com/gabrielle__music/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
         </div>
       </div>
     </div>
 
+    <!-- NIR&#216; -->
     <div class="artist-tile fade-in-up" data-key="niro">
-      <div class="tile-bg"><span class="tile-bg-letter">N</span></div>
+      <div class="tile-photo">
+        <img src="photo_niro.jpg" alt="Niro" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>N</span></div>';">
+      </div>
       <div class="tile-default">
-        <div class="tile-name">Nir&#216;</div>
+        <div class="tile-name">Nir<span class="sc">&#216;</span></div>
         <div class="tile-links">
-          <a href="https://soundcloud.com/disko-dolce" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-          <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
+          <a href="https://soundcloud.com/roewert" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
+          <a href="https://www.instagram.com/roewireloaded/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
         </div>
       </div>
       <div class="tile-hover">
-        <div class="hover-name">Nir&#216;</div>
+        <div class="hover-name">Nir<span class="sc">&#216;</span></div>
         <p class="hover-sound">House roots, techno heart &#8212; hypnotic, groovy, euphoric and melancholic. Always with a cheeky sprinkle of UK sounds for extra edge.</p>
         <p class="hover-more">click for full profile</p>
         <div class="hover-links">
-          <a href="https://soundcloud.com/disko-dolce" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-          <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
+          <a href="https://soundcloud.com/roewert" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
+          <a href="https://www.instagram.com/roewireloaded/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
         </div>
       </div>
     </div>
@@ -1189,7 +1286,7 @@
 <div id="gigs">
 <div class="section-block">
   <p class="section-label fade-in-up">On Stage</p>
-  <h2 class="section-title fade-in-up">gigs &amp;<br>showcases</h2>
+  <h2 class="section-title fade-in-up">gigs<br><span style="font-family:var(--font-body);font-weight:300;font-size:0.75em;letter-spacing:0.02em;">&amp;</span> showcases</h2>
 
   <div class="gigs-layout">
     <div class="fade-in-up">
@@ -1251,17 +1348,17 @@
     <div class="fade-in-up">
       <p class="contact-intro">We love meeting people who love what we love. Whether it&#8217;s a booking, a collaboration, or just a feeling &#8212; reach out.</p>
       <div class="contact-links">
-        <a href="mailto:diskodolcemusic&#64;gmail.com" class="contact-link">
+        <a href="mailto:diskodolcemusic@gmail.com" class="contact-link">
           <div>
             <div class="contact-link-label">Bookings &amp; General</div>
-            <div class="contact-link-value">diskodolcemusic&#64;gmail.com</div>
+            <div class="contact-link-value">diskodolcemusic@gmail.com</div>
           </div>
           <svg class="contact-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="https://www.instagram.com/diskodolce.music/" target="_blank" class="contact-link">
           <div>
             <div class="contact-link-label">Instagram</div>
-            <div class="contact-link-value">&#64;diskodolce.music</div>
+            <div class="contact-link-value">@diskodolce.music</div>
           </div>
           <svg class="contact-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -1280,9 +1377,9 @@
       <div class="booking-box">
         <h4>Bring disko dolce to your space</h4>
         <p>We don&#8217;t just play music &#8212; we bring an experience. A curated crowd, a unique energy, and sets that take people somewhere. If you want that for your event or venue, let&#8217;s talk.</p>
-        <a href="mailto:diskodolcemusic&#64;gmail.com" class="booking-email">
+        <a href="mailto:diskodolcemusic@gmail.com" class="booking-email">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          diskodolcemusic&#64;gmail.com
+          diskodolcemusic@gmail.com
         </a>
       </div>
     </div>
@@ -1308,120 +1405,110 @@
 </div>
 
 <script>
-// ── Nav scroll ──
 window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// ── Mobile menu ──
 function toggleMobile() { document.getElementById('mobileMenu').classList.toggle('open'); }
 function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
 
-// ── Scroll reveal ──
 var revealObs = new IntersectionObserver(function(entries) {
   entries.forEach(function(e, i) {
     if (e.isIntersecting) setTimeout(function() { e.target.classList.add('visible'); }, i * 65);
   });
 }, { threshold: 0.07, rootMargin: '0px 0px -24px 0px' });
-
 document.querySelectorAll('.fade-in-up').forEach(function(el) { revealObs.observe(el); });
 
-// ── Artist data ──
 var artists = {
   balkis: {
-    name: 'Balkis', origin: 'FR',
+    name: 'Balkis', nameHTML: 'Balkis', origin: 'FR',
     sound: 'I play a blend of indie dance, dark disco and techno. I craft sensual and enchanting sets built on warm basslines, dark grooves, hypnotic melodies and vintage textures that invite you to get lost and connect with the moment.',
     q2label: 'What inspires you outside of music?',
     q2: 'My music is political. Ecology, feminism, anti-fascism, anti-racism, solidarity \u2014 these aren\u2019t just values, they\u2019re the reason I DJ. I believe music has the power to bring people together and make us stronger. The dancefloor can be a safe space where people reclaim their freedom and feel pure joy.',
     collective: 'It started out of the dust \u2014 literally. I was part of the team that built the first disko dolce camp at AfrikaBurn. From that desert experience, a collective was born, and a community kept growing around it. I\u2019m so grateful to be surrounded by all these good-hearted and fun people.',
     fun: null,
-    thisOrThat: [['Closing slot','Opening slot'],['Instrumental','Vocals'],['Long blends','Quick transitions'],['Allen\u0026Heath','Pioneer'],['Smoke machine','Strobe lights'],['Festival','Club night'],['Subtle moves','Hands in the air'],['Bass face','Poker face'],['All black','Colours']],
-    sc: 'https://soundcloud.com/disko-dolce', ig: 'https://www.instagram.com/diskodolce.music/'
+    thisOrThat: [['Closing slot','Opening slot'],['Instrumental','Vocals'],['Long blends','Quick transitions'],['Allen&Heath','Pioneer'],['Smoke machine','Strobe lights'],['Festival','Club night'],['Subtle moves','Hands in the air'],['Bass face','Poker face'],['All black','Colours']],
+    sc: 'https://soundcloud.com/balkis_music', ig: 'https://www.instagram.com/balkis_music/'
   },
   anschi: {
-    name: 'Anschi', origin: 'DE',
+    name: 'Anschi', nameHTML: 'Anschi', origin: 'DE',
     sound: 'Melodic house and techno with spicy, groovy indie dance, a driving bass, and a few surprise bangers along the way. My sets move through genres, moods, emotions, and rhythms to tell a story \u2014 to make people feel, dance, and connect, the same way music moves me.',
     q2label: 'A favourite memory behind the decks',
     q2: 'I played Firmament by Deer Jade (one of my all time favourite tracks) at AfrikaBurn 2025 and all of a sudden Deer Jade was standing right behind me as she heard the sound of her own track through the desert \u2014 such a special (fan girl) moment!',
     collective: 'To bring our community and our shared love for creativity and art to places beyond AfrikaBurn.',
     fun: null,
-    thisOrThat: [['Opening slot','Closing slot'],['Vocals','Instrumental'],['Long blends','Quick transitions'],['Pioneer','Allen\u0026Heath'],['Strobe lights','Smoke machine'],['Festival','Club night'],['Hands in the air','Subtle moves'],['Bass face','Poker face'],['Colours','All black']],
-    sc: 'https://soundcloud.com/disko-dolce', ig: 'https://www.instagram.com/diskodolce.music/'
+    thisOrThat: [['Opening slot','Closing slot'],['Vocals','Instrumental'],['Long blends','Quick transitions'],['Pioneer','Allen&Heath'],['Strobe lights','Smoke machine'],['Festival','Club night'],['Hands in the air','Subtle moves'],['Bass face','Poker face'],['Colours','All black']],
+    sc: 'https://soundcloud.com/anschiberlin', ig: 'https://www.instagram.com/frau.anschi/'
   },
   katse: {
-    name: 'Katse', origin: 'AT',
+    name: 'Katse', nameHTML: 'Katse', origin: 'AT',
     sound: 'Melodic techno with deep, rolling bass combined with indie dance. Emotional, energetic, and a little spicy \u2014 driven by powerful low-end pressure and unexpected twists that take you on a journey and keep you moving between genres.',
     q2label: 'What does the collective mean to you?',
-    q2: 'It all started over three years ago in Italy, when we created the idea of a camp at AfrikaBurn \u2014 long before the idea of a collective, and before I even began DJing. Now it\u2019s surreal to see Disko Dolce recognized by so many, with incredible DJs coming together under this name. I\u2019m truly proud of what it\u2019s become. Here\u2019s to many more unforgettable sets.',
+    q2: 'It all started over three years ago in Italy, when we created the idea of a camp at AfrikaBurn \u2014 long before the idea of a collective, and before I even began DJing. Now it\u2019s surreal to see Disko Dolce recognized by so many, with incredible DJs coming together under this name. I\u2019m truly proud of what it\u2019s become.',
     collective: null,
-    fun: 'No fruits except papayas, but there\u2019s always a lolly hiding in her pocket. On a mission to get \u201cMaaaahhhh\u201d officially added to every dictionary. And apparently\u2026 still struggling with the letters B \u0026 P (or so they say).',
-    thisOrThat: [['Closing slot','Opening slot'],['Vocals','Instrumental'],['Quick transitions','Long blends'],['Pioneer','Allen\u0026Heath'],['Smoke machine','Strobe lights'],['Festival','Club night'],['Hands in the air','Subtle moves'],['Bass face','Poker face'],['All black','Colours']],
-    sc: 'https://soundcloud.com/disko-dolce', ig: 'https://www.instagram.com/diskodolce.music/'
+    fun: 'No fruits except papayas, but there\u2019s always a lolly hiding in her pocket. On a mission to get \u201cMaaaahhhh\u201d officially added to every dictionary. And apparently\u2026 still struggling with the letters B & P (or so they say).',
+    thisOrThat: [['Closing slot','Opening slot'],['Vocals','Instrumental'],['Quick transitions','Long blends'],['Pioneer','Allen&Heath'],['Smoke machine','Strobe lights'],['Festival','Club night'],['Hands in the air','Subtle moves'],['Bass face','Poker face'],['All black','Colours']],
+    sc: 'https://soundcloud.com/katsekatse', ig: 'https://www.instagram.com/__katse/'
   },
   notmax: {
-    name: 'NotMax', origin: 'DE / CH',
+    name: 'NotMax', nameHTML: 'NotMax', origin: 'DE / CH',
     sound: 'Melodic house and indie dance that actually hits and loves a bit of drama. Big emotions, dirty grooves, playful curveballs and the occasional sing-along bomb. My sets usually start moody and end slightly unhinged, combining different genres into a joyful chaos where we all lose ourselves into the moment.',
     q2label: 'A favourite memory behind the decks',
     q2: 'Playing the closing set at KitKat (Berlin) on a Monday morning, and at 7am the crowd convinced the club manager to let us go another 40 minutes. We were just not ready to end it there.',
     collective: null,
     fun: 'A track I never get tired of playing: \u201cTraca Y P\u00f3lvora\u201d by Darlyn Vlys. So dramatic, energizing \u2014 small references to Daft Punk, orchestral vibes, mystery, melancholy, a hard beat\u2026',
-    thisOrThat: [['Opening slot','Closing slot'],['Vocals','Instrumental'],['Long blends','Quick transitions'],['Pioneer','Allen\u0026Heath'],['Smoke machine','Strobe lights'],['Festival','Club night'],['Hands in the air','Subtle moves'],['Bass face','Poker face'],['Colours','All black']],
-    sc: 'https://soundcloud.com/disko-dolce', ig: 'https://www.instagram.com/diskodolce.music/'
+    thisOrThat: [['Opening slot','Closing slot'],['Vocals','Instrumental'],['Long blends','Quick transitions'],['Pioneer','Allen&Heath'],['Smoke machine','Strobe lights'],['Festival','Club night'],['Hands in the air','Subtle moves'],['Bass face','Poker face'],['Colours','All black']],
+    sc: 'https://soundcloud.com/notmax_official', ig: 'https://www.instagram.com/clearly_notmax/'
   },
   gabrielle: {
-    name: 'Gabri:elle', origin: 'CH',
-    sound: 'My sets balance high-energy peaks with deeper, moodier transitions. I avoid strict genre boundaries, focusing instead on storytelling and taking the crowd on a journey. My sweet spot lives in Indie Dance, melodic house \u0026 techno, tech house, afro house, with a soft spot for housy tracks.',
+    name: 'Gabri:elle', nameHTML: 'Gabri<span style="font-family:\'Helvetica Neue\',Helvetica,Arial,sans-serif;font-weight:300;font-size:0.82em;">:</span>elle', origin: 'CH',
+    sound: 'My sets balance high-energy peaks with deeper, moodier transitions. I avoid strict genre boundaries, focusing instead on storytelling and taking the crowd on a journey. My sweet spot lives in Indie Dance, melodic house & techno, tech house, afro house, with a soft spot for housy tracks.',
     q2label: 'One fun fact',
     q2: 'I have a talent for leaving things behind \u2014 yes, even my USB stick after gigs. I finally gave in and put an AirTag on it, and it\u2019s already helped me track it down more than once.',
     collective: 'The collective was born from friendships made in the desert at AfrikaBurn and a shared love for music. It\u2019s more than just a DJ collective \u2014 it\u2019s a space where kindness comes first.',
     fun: null,
-    thisOrThat: [['Closing slot','Opening slot'],['Vocals','Instrumental'],['Long blends','Quick transitions'],['Pioneer','Allen\u0026Heath'],['Strobe lights','Smoke machine'],['Festival','Club night'],['Subtle moves','Hands in the air'],['Bass face','Poker face'],['Colours','All black']],
-    sc: 'https://soundcloud.com/disko-dolce', ig: 'https://www.instagram.com/diskodolce.music/'
+    thisOrThat: [['Closing slot','Opening slot'],['Vocals','Instrumental'],['Long blends','Quick transitions'],['Pioneer','Allen&Heath'],['Strobe lights','Smoke machine'],['Festival','Club night'],['Subtle moves','Hands in the air'],['Bass face','Poker face'],['Colours','All black']],
+    sc: 'https://soundcloud.com/gabrielle-tp', ig: 'https://www.instagram.com/gabrielle__music/'
   },
   niro: {
-    name: 'Nir\u00d8', origin: 'DE',
+    name: 'Nir\u00d8', nameHTML: 'Nir<span style="font-family:\'Helvetica Neue\',Helvetica,Arial,sans-serif;font-weight:300;font-size:0.82em;">\u00d8</span>', origin: 'DE',
     sound: 'My roots are in house music, but over time my sound has gravitated more and more towards techno, especially the hypnotic and groovy stuff. Depending on the gig, my sets lean either way but always contain euphoric and melancholic elements. And for some extra fun, I like to sprinkle in some UK sounds.',
     q2label: 'A favourite memory behind the decks',
-    q2: 'A field rave near Aachen in 2017. Earlier that day I had driven to Cologne to pick up a vinyl I\u2019d been waiting for months. I dropped it right when the sky cleared under a bright full moon. The crowd went crazy \u2014 several people asking for the track ID afterwards. It was Avalon by \u0026ME.',
+    q2: 'A field rave near Aachen in 2017. Earlier that day I had driven to Cologne to pick up a vinyl I\u2019d been waiting for months. I dropped it right when the sky cleared under a bright full moon. The crowd went crazy \u2014 several people asking for the track ID afterwards. It was Avalon by &ME.',
     collective: null,
     fun: 'I\u2019ve got a piece of the original wooden dancefloor from Robert Johnson (club in Offenbach, Germany) in my bedroom. Some of you might\u2019ve danced on it back then hehe.',
-    thisOrThat: [['Closing slot','Opening slot'],['Instrumental','Vocals'],['Long blends','Quick transitions'],['Pioneer/A\u0026H','Rotary ;)'],['Smoke machine','Strobe lights'],['Club night','Festival'],['Subtle moves','Hands in the air'],['Bass face','Poker face'],['Colours','All black']],
-    sc: 'https://soundcloud.com/disko-dolce', ig: 'https://www.instagram.com/diskodolce.music/'
+    thisOrThat: [['Closing slot','Opening slot'],['Instrumental','Vocals'],['Long blends','Quick transitions'],['Pioneer/A&H','Rotary ;)'],['Smoke machine','Strobe lights'],['Club night','Festival'],['Subtle moves','Hands in the air'],['Bass face','Poker face'],['Colours','All black']],
+    sc: 'https://soundcloud.com/roewert', ig: 'https://www.instagram.com/roewireloaded/'
   }
 };
 
 function buildModal(key) {
   var a = artists[key];
   var ttHTML = a.thisOrThat.map(function(pair) {
-    return '<div class="tt-row"><span class="tt-chosen">' + pair[0] + '</span><span style="opacity:0.28;font-size:11px;">' + pair[1] + '</span></div>';
+    return '<div class="tt-row"><span class="tt-chosen">' + pair[0] + '</span><span style="opacity:0.28;font-size:11px;font-family:var(--font-body);">' + pair[1] + '</span></div>';
   }).join('');
 
-  var html = '<div class="modal-name">' + a.name + '</div>'
+  var html = '<div class="modal-name">' + a.nameHTML + '</div>'
     + '<div class="modal-origin">' + a.origin + '</div>'
     + '<div class="modal-section"><h4>Sound</h4><p>' + a.sound + '</p></div>'
     + '<div class="modal-section"><h4>' + a.q2label + '</h4><p>' + a.q2 + '</p></div>';
 
-  if (a.collective) {
-    html += '<div class="modal-section"><h4>What the collective means to me</h4><p>' + a.collective + '</p></div>';
-  }
-  if (a.fun) {
-    html += '<div class="modal-section"><h4>Fun fact</h4><p>' + a.fun + '</p></div>';
-  }
+  if (a.collective) html += '<div class="modal-section"><h4>What the collective means to me</h4><p>' + a.collective + '</p></div>';
+  if (a.fun) html += '<div class="modal-section"><h4>Fun fact</h4><p>' + a.fun + '</p></div>';
 
   html += '<div class="modal-section"><h4>This or That</h4><div class="modal-this-that">' + ttHTML + '</div></div>'
     + '<div class="modal-links">'
     + '<a href="' + a.sc + '" target="_blank" class="modal-link">&#9835; SoundCloud</a>'
     + '<a href="' + a.ig + '" target="_blank" class="modal-link">&#10022; Instagram</a>'
     + '</div>';
-
   return html;
 }
 
 function openModal(key) {
   document.getElementById('modalBody').innerHTML = buildModal(key);
-  var overlay = document.getElementById('modalOverlay');
-  overlay.classList.add('open');
-  overlay.scrollTop = 0;
+  var ov = document.getElementById('modalOverlay');
+  ov.classList.add('open');
+  ov.scrollTop = 0;
   document.body.style.overflow = 'hidden';
 }
 
@@ -1436,7 +1523,6 @@ document.getElementById('modalOverlay').addEventListener('click', function(e) {
 
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-// ── Artist tile clicks ──
 document.querySelectorAll('.artist-tile').forEach(function(tile) {
   tile.addEventListener('click', function(e) {
     if (e.target.closest('a')) return;
@@ -1453,7 +1539,6 @@ document.querySelectorAll('.artist-tile').forEach(function(tile) {
   });
 });
 
-// ── Logo fallbacks ──
 document.getElementById('navLogoImg').onerror = function() {
   this.parentNode.innerHTML = '<span class="nav-logo-fallback">disko dolce</span>';
 };
