@@ -100,26 +100,35 @@
 
   .nav-links a:hover { opacity: 1; color: var(--crimson); }
 
+  /* ── HAMBURGER (pure CSS checkbox toggle) ── */
+  #menu-toggle {
+    display: none;
+  }
+
   .nav-burger {
     display: none;
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
+    position: relative;
+    z-index: 103;
   }
-  .nav-burger span { display: block; width: 24px; height: 1.5px; background: var(--cream); }
+  .nav-burger span { display: block; width: 24px; height: 1.5px; background: var(--cream); transition: background 0.2s; }
 
   .mobile-menu {
     display: none;
     position: fixed;
     inset: 0;
     background: rgba(8,8,8,0.98);
-    z-index: 101;
+    z-index: 102;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 48px;
   }
-  .mobile-menu.open { display: flex; }
+  #menu-toggle:checked ~ .mobile-menu { display: flex; }
+  #menu-toggle:checked ~ nav .nav-burger span { background: var(--crimson); }
+
   .mobile-menu a {
     font-family: var(--font-display);
     font-size: 52px;
@@ -1072,12 +1081,13 @@
 </head>
 <body>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#who-we-are">Who We Are</a>
-  <a href="#our-artists">Our Artists</a>
-  <a href="#our-sound">Our Sound</a>
-  <a href="#gigs">Gigs</a>
-  <a href="#contact">Contact</a>
+<input type="checkbox" id="menu-toggle">
+<div class="mobile-menu">
+  <label for="menu-toggle"><a href="#who-we-are">Who We Are</a></label>
+  <label for="menu-toggle"><a href="#our-artists">Our Artists</a></label>
+  <label for="menu-toggle"><a href="#our-sound">Our Sound</a></label>
+  <label for="menu-toggle"><a href="#gigs">Gigs</a></label>
+  <label for="menu-toggle"><a href="#contact">Contact</a></label>
 </div>
 
 <nav id="navbar">
@@ -1091,9 +1101,9 @@
     <li><a href="#gigs">Gigs</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <div class="nav-burger" id="navBurger">
+  <label class="nav-burger" for="menu-toggle">
     <span></span><span></span><span></span>
-  </div>
+  </label>
 </nav>
 
 <!-- HERO -->
@@ -1491,10 +1501,6 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 
-var mobileMenu = document.getElementById('mobileMenu');
-function closeMobile() { mobileMenu.classList.remove('open'); }
-document.getElementById('navBurger').addEventListener('click', function() { mobileMenu.classList.toggle('open'); });
-mobileMenu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMobile); });
 
 var revealObs = new IntersectionObserver(function(entries) {
   entries.forEach(function(e, i) {
