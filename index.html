@@ -1073,11 +1073,11 @@
 <body>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#who-we-are" onclick="closeMobile()">Who We Are</a>
-  <a href="#our-artists" onclick="closeMobile()">Our Artists</a>
-  <a href="#our-sound" onclick="closeMobile()">Our Sound</a>
-  <a href="#gigs" onclick="closeMobile()">Gigs</a>
-  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="#who-we-are">Who We Are</a>
+  <a href="#our-artists">Our Artists</a>
+  <a href="#our-sound">Our Sound</a>
+  <a href="#gigs">Gigs</a>
+  <a href="#contact">Contact</a>
 </div>
 
 <nav id="navbar">
@@ -1091,7 +1091,7 @@
     <li><a href="#gigs">Gigs</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <div class="nav-burger" onclick="toggleMobile()">
+  <div class="nav-burger" id="navBurger">
     <span></span><span></span><span></span>
   </div>
 </nav>
@@ -1491,8 +1491,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 
-function toggleMobile() { document.getElementById('mobileMenu').classList.toggle('open'); }
-function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+var mobileMenu = document.getElementById('mobileMenu');
+function closeMobile() { mobileMenu.classList.remove('open'); }
+document.getElementById('navBurger').addEventListener('click', function() { mobileMenu.classList.toggle('open'); });
+mobileMenu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMobile); });
 
 var revealObs = new IntersectionObserver(function(entries) {
   entries.forEach(function(e, i) {
