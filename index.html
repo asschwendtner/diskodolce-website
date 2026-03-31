@@ -497,38 +497,12 @@
 
   .artist-tile {
     position: relative;
+    overflow: hidden;
     aspect-ratio: 3/4;
     background: var(--mid);
     cursor: pointer;
-    perspective: 1000px;
   }
 
-  .artist-tile.active .tile-inner { transform: rotateY(180deg); }
-
-  .tile-inner {
-    position: absolute;
-    inset: 0;
-    transform-style: preserve-3d;
-    transition: transform 0.55s ease;
-  }
-
-  .tile-front,
-  .tile-back {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    overflow: hidden;
-  }
-
-  .tile-back {
-    transform: rotateY(180deg);
-    background: rgba(8,8,8,0.95);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 30px 26px;
-  }
 
   .tile-bg {
     position: absolute;
@@ -1226,222 +1200,144 @@
 <div class="section-block">
   <p class="section-label fade-in-up">The Collective</p>
   <h2 class="section-title fade-in-up">our artists</h2>
-  <p class="artists-intro fade-in-up">Six voices, one spirit &#8212; each bringing a different chapter to the story, a different influence, a different style. Tap a picture to find out more about each artist.</p>
+  <p class="artists-intro fade-in-up">Six voices, one spirit &#8212; each bringing a different chapter to the story, a different influence, a different style. Tap or hover to find out more about each artist.</p>
 
   <div class="artists-grid">
 
     <!-- BALKIS -->
     <div class="artist-tile fade-in-up" data-key="balkis">
-      <div class="tile-inner">
-        <div class="tile-front">
-          <div class="tile-photo">
-            <img src="photo_balkis.jpg" alt="Balkis" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>B</span></div>';">
-          </div>
-          <div class="tile-default">
-            <div class="tile-name">Balkis</div>
-            <div class="tile-links">
-              <a href="https://soundcloud.com/balkis_music" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
-              <a href="https://www.instagram.com/balkis_music/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
-            </div>
-          </div>
-          <div class="tile-hover">
-            <div class="hover-name">Balkis</div>
-            <p class="hover-sound">Indie dance, dark disco and techno. Sensual, enchanting sets built on warm basslines, dark grooves, hypnotic melodies and vintage textures.</p>
-            <p class="hover-more">find out more</p>
-            <div class="hover-links">
-              <a href="https://soundcloud.com/balkis_music" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-              <a href="https://www.instagram.com/balkis_music/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
-            </div>
-          </div>
+      <div class="tile-photo">
+        <img src="photo_balkis.jpg" alt="Balkis" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>B</span></div>';">
+      </div>
+      <div class="tile-default">
+        <div class="tile-name">Balkis</div>
+        <div class="tile-links">
+          <a href="https://soundcloud.com/balkis_music" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
+          <a href="https://www.instagram.com/balkis_music/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
         </div>
-        <div class="tile-back">
-          <div class="hover-name">Balkis</div>
-          <p class="hover-sound">Indie dance, dark disco and techno. Sensual, enchanting sets built on warm basslines, dark grooves, hypnotic melodies and vintage textures.</p>
-          <p class="hover-more">find out more</p>
-          <div class="hover-links">
-            <a href="https://soundcloud.com/balkis_music" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-            <a href="https://www.instagram.com/balkis_music/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
-          </div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-name">Balkis</div>
+        <p class="hover-sound">Indie dance, dark disco and techno. Sensual, enchanting sets built on warm basslines, dark grooves, hypnotic melodies and vintage textures.</p>
+        <p class="hover-more">find out more</p>
+        <div class="hover-links">
+          <a href="https://soundcloud.com/balkis_music" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
+          <a href="https://www.instagram.com/balkis_music/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
         </div>
       </div>
     </div>
 
     <!-- ANSCHI -->
     <div class="artist-tile fade-in-up" data-key="anschi">
-      <div class="tile-inner">
-        <div class="tile-front">
-          <div class="tile-photo">
-            <img src="photo_anschi.jpg" alt="anschi" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>A</span></div>';">
-          </div>
-          <div class="tile-default">
-            <div class="tile-name">anschi</div>
-            <div class="tile-links">
-              <a href="https://soundcloud.com/anschiberlin" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
-              <a href="https://www.instagram.com/frau.anschi/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
-            </div>
-          </div>
-          <div class="tile-hover">
-            <div class="hover-name">anschi</div>
-            <p class="hover-sound">Melodic house and techno with spicy, groovy indie dance and a driving bass. Sets that move through genres, moods and emotions to tell a story.</p>
-            <p class="hover-more">find out more</p>
-            <div class="hover-links">
-              <a href="https://soundcloud.com/anschiberlin" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-              <a href="https://www.instagram.com/frau.anschi/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
-            </div>
-          </div>
+      <div class="tile-photo">
+        <img src="photo_anschi.jpg" alt="anschi" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>A</span></div>';">
+      </div>
+      <div class="tile-default">
+        <div class="tile-name">anschi</div>
+        <div class="tile-links">
+          <a href="https://soundcloud.com/anschiberlin" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
+          <a href="https://www.instagram.com/frau.anschi/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
         </div>
-        <div class="tile-back">
-          <div class="hover-name">anschi</div>
-          <p class="hover-sound">Melodic house and techno with spicy, groovy indie dance and a driving bass. Sets that move through genres, moods and emotions to tell a story.</p>
-          <p class="hover-more">find out more</p>
-          <div class="hover-links">
-            <a href="https://soundcloud.com/anschiberlin" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-            <a href="https://www.instagram.com/frau.anschi/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
-          </div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-name">anschi</div>
+        <p class="hover-sound">Melodic house and techno with spicy, groovy indie dance and a driving bass. Sets that move through genres, moods and emotions to tell a story.</p>
+        <p class="hover-more">find out more</p>
+        <div class="hover-links">
+          <a href="https://soundcloud.com/anschiberlin" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
+          <a href="https://www.instagram.com/frau.anschi/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
         </div>
       </div>
     </div>
 
     <!-- KATSE -->
     <div class="artist-tile fade-in-up" data-key="katse">
-      <div class="tile-inner">
-        <div class="tile-front">
-          <div class="tile-photo">
-            <img src="photo_katse.jpg" alt="Katse" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>K</span></div>';">
-          </div>
-          <div class="tile-default">
-            <div class="tile-name">Katse</div>
-            <div class="tile-links">
-              <a href="https://soundcloud.com/katsekatse" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
-              <a href="https://www.instagram.com/__katse/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
-            </div>
-          </div>
-          <div class="tile-hover">
-            <div class="hover-name">Katse</div>
-            <p class="hover-sound">Melodic techno with deep, rolling bass and indie dance. Emotional, energetic, a little spicy &#8212; unexpected twists that keep you moving between genres.</p>
-            <p class="hover-more">find out more</p>
-            <div class="hover-links">
-              <a href="https://soundcloud.com/katsekatse" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-              <a href="https://www.instagram.com/__katse/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
-            </div>
-          </div>
+      <div class="tile-photo">
+        <img src="photo_katse.jpg" alt="Katse" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>K</span></div>';">
+      </div>
+      <div class="tile-default">
+        <div class="tile-name">Katse</div>
+        <div class="tile-links">
+          <a href="https://soundcloud.com/katsekatse" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
+          <a href="https://www.instagram.com/__katse/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
         </div>
-        <div class="tile-back">
-          <div class="hover-name">Katse</div>
-          <p class="hover-sound">Melodic techno with deep, rolling bass and indie dance. Emotional, energetic, a little spicy &#8212; unexpected twists that keep you moving between genres.</p>
-          <p class="hover-more">find out more</p>
-          <div class="hover-links">
-            <a href="https://soundcloud.com/katsekatse" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-            <a href="https://www.instagram.com/__katse/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
-          </div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-name">Katse</div>
+        <p class="hover-sound">Melodic techno with deep, rolling bass and indie dance. Emotional, energetic, a little spicy &#8212; unexpected twists that keep you moving between genres.</p>
+        <p class="hover-more">find out more</p>
+        <div class="hover-links">
+          <a href="https://soundcloud.com/katsekatse" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
+          <a href="https://www.instagram.com/__katse/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
         </div>
       </div>
     </div>
 
     <!-- NOTMAX -->
     <div class="artist-tile fade-in-up" data-key="notmax">
-      <div class="tile-inner">
-        <div class="tile-front">
-          <div class="tile-photo">
-            <img src="photo_notmax.jpg" alt="NotMax" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>N</span></div>';">
-          </div>
-          <div class="tile-default">
-            <div class="tile-name">NotMax</div>
-            <div class="tile-links">
-              <a href="https://soundcloud.com/notmax_official" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
-              <a href="https://www.instagram.com/clearly_notmax/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
-            </div>
-          </div>
-          <div class="tile-hover">
-            <div class="hover-name">NotMax</div>
-            <p class="hover-sound">Melodic house and indie dance with big emotions, dirty grooves and playful curveballs. Sets that start moody and end slightly unhinged.</p>
-            <p class="hover-more">find out more</p>
-            <div class="hover-links">
-              <a href="https://soundcloud.com/notmax_official" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-              <a href="https://www.instagram.com/clearly_notmax/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
-            </div>
-          </div>
+      <div class="tile-photo">
+        <img src="photo_notmax.jpg" alt="NotMax" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>N</span></div>';">
+      </div>
+      <div class="tile-default">
+        <div class="tile-name">NotMax</div>
+        <div class="tile-links">
+          <a href="https://soundcloud.com/notmax_official" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
+          <a href="https://www.instagram.com/clearly_notmax/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
         </div>
-        <div class="tile-back">
-          <div class="hover-name">NotMax</div>
-          <p class="hover-sound">Melodic house and indie dance with big emotions, dirty grooves and playful curveballs. Sets that start moody and end slightly unhinged.</p>
-          <p class="hover-more">find out more</p>
-          <div class="hover-links">
-            <a href="https://soundcloud.com/notmax_official" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-            <a href="https://www.instagram.com/clearly_notmax/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
-          </div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-name">NotMax</div>
+        <p class="hover-sound">Melodic house and indie dance with big emotions, dirty grooves and playful curveballs. Sets that start moody and end slightly unhinged.</p>
+        <p class="hover-more">find out more</p>
+        <div class="hover-links">
+          <a href="https://soundcloud.com/notmax_official" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
+          <a href="https://www.instagram.com/clearly_notmax/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
         </div>
       </div>
     </div>
 
     <!-- GABRI:ELLE -->
     <div class="artist-tile fade-in-up" data-key="gabrielle">
-      <div class="tile-inner">
-        <div class="tile-front">
-          <div class="tile-photo">
-            <img src="photo_gabrielle.jpg" alt="gabri:elle" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>G</span></div>';">
-          </div>
-          <div class="tile-default">
-            <div class="tile-name">gabri<span class="sc">:</span>elle</div>
-            <div class="tile-links">
-              <a href="https://soundcloud.com/gabrielle-tp" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
-              <a href="https://www.instagram.com/gabrielle__music/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
-            </div>
-          </div>
-          <div class="tile-hover">
-            <div class="hover-name">gabri<span class="sc">:</span>elle</div>
-            <p class="hover-sound">Indie dance, melodic house and techno, tech house, afro house. Storytelling over genre boundaries &#8212; taking the crowd on a journey.</p>
-            <p class="hover-more">find out more</p>
-            <div class="hover-links">
-              <a href="https://soundcloud.com/gabrielle-tp" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-              <a href="https://www.instagram.com/gabrielle__music/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
-            </div>
-          </div>
+      <div class="tile-photo">
+        <img src="photo_gabrielle.jpg" alt="gabri:elle" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>G</span></div>';">
+      </div>
+      <div class="tile-default">
+        <div class="tile-name">gabri<span class="sc">:</span>elle</div>
+        <div class="tile-links">
+          <a href="https://soundcloud.com/gabrielle-tp" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
+          <a href="https://www.instagram.com/gabrielle__music/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
         </div>
-        <div class="tile-back">
-          <div class="hover-name">gabri<span class="sc">:</span>elle</div>
-          <p class="hover-sound">Indie dance, melodic house and techno, tech house, afro house. Storytelling over genre boundaries &#8212; taking the crowd on a journey.</p>
-          <p class="hover-more">find out more</p>
-          <div class="hover-links">
-            <a href="https://soundcloud.com/gabrielle-tp" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-            <a href="https://www.instagram.com/gabrielle__music/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
-          </div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-name">gabri<span class="sc">:</span>elle</div>
+        <p class="hover-sound">Indie dance, melodic house and techno, tech house, afro house. Storytelling over genre boundaries &#8212; taking the crowd on a journey.</p>
+        <p class="hover-more">find out more</p>
+        <div class="hover-links">
+          <a href="https://soundcloud.com/gabrielle-tp" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
+          <a href="https://www.instagram.com/gabrielle__music/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
         </div>
       </div>
     </div>
 
     <!-- NIR&#216; -->
     <div class="artist-tile fade-in-up" data-key="niro">
-      <div class="tile-inner">
-        <div class="tile-front">
-          <div class="tile-photo">
-            <img src="photo_niro.jpg" alt="Niro" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>N</span></div>';">
-          </div>
-          <div class="tile-default">
-            <div class="tile-name">Nir<span class="sc" style="font-weight:700;">&#216;</span></div>
-            <div class="tile-links">
-              <a href="https://soundcloud.com/roewert" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
-              <a href="https://www.instagram.com/roewireloaded/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
-            </div>
-          </div>
-          <div class="tile-hover">
-            <div class="hover-name">Nir<span class="sc" style="font-weight:700;">&#216;</span></div>
-            <p class="hover-sound">House roots, techno heart &#8212; hypnotic, groovy, euphoric and melancholic. Always with a cheeky sprinkle of UK sounds for extra edge.</p>
-            <p class="hover-more">find out more</p>
-            <div class="hover-links">
-              <a href="https://soundcloud.com/roewert" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-              <a href="https://www.instagram.com/roewireloaded/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
-            </div>
-          </div>
+      <div class="tile-photo">
+        <img src="photo_niro.jpg" alt="Niro" onerror="this.closest('.tile-photo').outerHTML='<div class=\'tile-bg\'><span class=\'tile-bg-letter\'>N</span></div>';">
+      </div>
+      <div class="tile-default">
+        <div class="tile-name">Nir<span class="sc" style="font-weight:700;">&#216;</span></div>
+        <div class="tile-links">
+          <a href="https://soundcloud.com/roewert" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#9835; SC</a>
+          <a href="https://www.instagram.com/roewireloaded/" target="_blank" class="tile-link" onclick="event.stopPropagation()">&#10022; IG</a>
         </div>
-        <div class="tile-back">
-          <div class="hover-name">Nir<span class="sc" style="font-weight:700;">&#216;</span></div>
-          <p class="hover-sound">House roots, techno heart &#8212; hypnotic, groovy, euphoric and melancholic. Always with a cheeky sprinkle of UK sounds for extra edge.</p>
-          <p class="hover-more">find out more</p>
-          <div class="hover-links">
-            <a href="https://soundcloud.com/roewert" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
-            <a href="https://www.instagram.com/roewireloaded/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
-          </div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-name">Nir<span class="sc" style="font-weight:700;">&#216;</span></div>
+        <p class="hover-sound">House roots, techno heart &#8212; hypnotic, groovy, euphoric and melancholic. Always with a cheeky sprinkle of UK sounds for extra edge.</p>
+        <p class="hover-more">find out more</p>
+        <div class="hover-links">
+          <a href="https://soundcloud.com/roewert" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#9835; SoundCloud</a>
+          <a href="https://www.instagram.com/roewireloaded/" target="_blank" class="hover-link" onclick="event.stopPropagation()">&#10022; Instagram</a>
         </div>
       </div>
     </div>
@@ -1737,14 +1633,7 @@ document.querySelectorAll('.artist-tile').forEach(function(tile) {
     if (e.target.closest('a')) return;
     var key = tile.dataset.key;
     if (!key) return;
-    if (window.innerWidth > 960) {
-      openModal(key);
-    } else {
-      document.querySelectorAll('.artist-tile').forEach(function(t) {
-        if (t !== tile) t.classList.remove('active');
-      });
-      tile.classList.toggle('active');
-    }
+    openModal(key);
   });
 });
 
