@@ -139,6 +139,19 @@
   }
   .mobile-menu a:hover { color: var(--crimson); }
 
+  .mobile-close {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    font-size: 24px;
+    color: var(--cream);
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    line-height: 1;
+  }
+  .mobile-close:hover { opacity: 1; }
+
   /* ── HERO ── */
   #hero {
     min-height: 100vh;
@@ -205,10 +218,9 @@
   }
 
   .hero-scroll {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    z-index: 2;
+    margin-top: 56px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1083,6 +1095,7 @@
 
 <input type="checkbox" id="menu-toggle">
 <div class="mobile-menu">
+  <label for="menu-toggle" class="mobile-close">&#10005;</label>
   <label for="menu-toggle"><a href="#who-we-are">Who We Are</a></label>
   <label for="menu-toggle"><a href="#our-artists">Our Artists</a></label>
   <label for="menu-toggle"><a href="#our-sound">Our Sound</a></label>
