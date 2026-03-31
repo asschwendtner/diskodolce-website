@@ -269,20 +269,30 @@
 
   /* ── OUR SOUND ── */
   .sound-sets {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    max-width: 800px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 900px;
+  }
+
+  .sound-set.featured {
+    grid-column: 1 / -1;
   }
 
   .sound-set-title {
     font-family: var(--font-body);
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--crimson);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: 400;
+  }
+
+  .sound-set iframe {
+    display: block;
+    border-radius: 3px;
+    overflow: hidden;
   }
 
   /* ── WHO WE ARE ── */
@@ -1038,6 +1048,7 @@
 
     .artists-grid { grid-template-columns: 1fr 1fr; }
 
+    .sound-sets { grid-template-columns: 1fr; }
     .gigs-layout { grid-template-columns: 1fr; gap: 56px; }
     .contact-layout { grid-template-columns: 1fr; gap: 48px; }
     .ig-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1328,34 +1339,34 @@
 
   <div class="sound-sets fade-in-up">
 
-    <div class="sound-set">
+    <div class="sound-set featured">
       <p class="sound-set-title">katse b2b anschi &mdash; Hive Club Zurich</p>
-      <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
-        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/disko-dolce/katse-anschi-hive&color=%23aaaaaa&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe>
+      <iframe width="100%" height="90" scrolling="no" frameborder="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/disko-dolce/katse-anschi-hive&color=%23b8184a&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
     </div>
 
     <div class="sound-set">
       <p class="sound-set-title">katse &mdash; Arche Ahoi Innsbruck</p>
-      <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
-        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/katsekatse/katse_arche_1209&color=%23aaaaaa&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe>
+      <iframe width="100%" height="90" scrolling="no" frameborder="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/katsekatse/katse_arche_1209&color=%23b8184a&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
     </div>
 
     <div class="sound-set">
       <p class="sound-set-title">NotMax &mdash; Opera Club Vienna</p>
-      <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
-        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/notmax_official/opera-vienna-feb-2026&color=%23aaaaaa&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe>
+      <iframe width="100%" height="90" scrolling="no" frameborder="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/notmax_official/opera-vienna-feb-2026&color=%23b8184a&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
     </div>
 
     <div class="sound-set">
       <p class="sound-set-title">anschi &mdash; Arche Ahoi Innsbruck</p>
-      <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
-        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/anschiberlin/anschi-arche-12092025&color=%23aaaaaa&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe>
+      <iframe width="100%" height="90" scrolling="no" frameborder="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/anschiberlin/anschi-arche-12092025&color=%23b8184a&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
     </div>
 
     <div class="sound-set">
       <p class="sound-set-title">gabri:elle &mdash; B&uuml;xe Zurich</p>
-      <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
-        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/gabrielle-tp/8marz-buxe-181024-gabrielle&color=%23aaaaaa&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe>
+      <iframe width="100%" height="90" scrolling="no" frameborder="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/gabrielle-tp/8marz-buxe-181024-gabrielle&color=%23b8184a&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
     </div>
 
   </div>
@@ -1430,10 +1441,10 @@
     <div class="fade-in-up">
       <p class="contact-intro">We love meeting people who love what we love. Whether it&#8217;s a booking, a collaboration, or just a feeling &#8212; reach out.</p>
       <div class="contact-links">
-        <a href="/cdn-cgi/l/email-protection#07636e746c6863686b64626a72746e6447606a666e6b2964686a" class="contact-link">
+        <a href="mailto:diskodolcemusic@gmail.com" class="contact-link">
           <div>
             <div class="contact-link-label">Bookings &amp; General</div>
-            <div class="contact-link-value"><span class="__cf_email__" data-cfemail="4d29243e26222922212e2820383e242e0d2a202c2421632e2220">[email&#160;protected]</span></div>
+            <div class="contact-link-value">diskodolcemusic@gmail.com</div>
           </div>
           <svg class="contact-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -1450,18 +1461,6 @@
             <div class="contact-link-value">disko-dolce</div>
           </div>
           <svg class="contact-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="fade-in-up">
-      <p class="section-label">Book Us</p>
-      <div class="booking-box">
-        <h4>Bring disko dolce to your space</h4>
-        <p>We don&#8217;t just play music &#8212; we bring an experience. A curated crowd, a unique energy, and sets that take people somewhere. If you want that for your event or venue, let&#8217;s talk.</p>
-        <a href="/cdn-cgi/l/email-protection#a3c7cad0c8ccc7cccfc0c6ced6d0cac0e3c4cec2cacf8dc0ccce" class="booking-email">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <span class="__cf_email__" data-cfemail="b9ddd0cad2d6ddd6d5dadcd4cccad0daf9ded4d8d0d597dad6d4">[email&#160;protected]</span>
         </a>
       </div>
     </div>
